@@ -3,6 +3,8 @@ package cminado.start;
 import java.util.ArrayList;
 import java.util.List;
 
+import cminado.exceptions.ExplosaoException;
+
 public class Campo {
 	public final int linha;
 	public final int coluna;
@@ -12,6 +14,7 @@ public class Campo {
 	private boolean fechado=false;
 	private boolean marcado=false;
 
+	// Criando a lista dos campos vizinhos
 	private List<Campo> vizinhos = new ArrayList<>();
 
 	public Campo(int linha, int coluna) {
@@ -39,5 +42,21 @@ public class Campo {
 		else {
 			return false;
 		}
+	}
+	void AlternarMarcacao(){
+		if(!aberto){
+			marcado = !marcado;
+		}
+	}
+
+	boolean abrir(){
+		if (!aberto && marcado ) {
+			aberto = true;
+
+			if (minado) {
+				throw new ExplosaoException();
+			}
+		}
+		return false;
 	}
 }
