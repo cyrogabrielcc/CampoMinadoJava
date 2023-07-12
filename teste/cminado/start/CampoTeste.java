@@ -1,10 +1,13 @@
 package cminado.start;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+
+import cminado.exceptions.ExplosaoException;
 
 public class CampoTeste {
     
@@ -55,4 +58,43 @@ public class CampoTeste {
         boolean resultado = campo.adicionarVizinho(vizinho);
         assertFalse(resultado);
     }
+
+    @Test
+    public void testeValorPadraoAtributoMarcado(){
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    public void testAlternarMarcacao(){
+        campo.AlternarMarcacao();
+        assertTrue(campo.isMarcado());
+    }
+
+    @Test
+    public void testAlternarMarcacaoDuasChamadas(){
+        campo.AlternarMarcacao();
+        campo.AlternarMarcacao();
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    public void testAbrirNaoMinadoNaoMarcado(){
+        assertTrue(campo.abrir());
+    }
+
+    @Test
+    public void testAbrirNaoMinadoMarcado(){
+        campo.AlternarMarcacao();
+        assertFalse(campo.abrir());
+    }
+
+    @Test
+    public void testAbrirMinadoMarcado(){
+        campo.minar();
+        assertThrows(ExplosaoException.class, () ->{
+            campo.abrir();
+        } );
+    }
+
+    
 }
