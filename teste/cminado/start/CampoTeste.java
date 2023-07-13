@@ -107,8 +107,9 @@ public class CampoTeste {
         campo22.adicionarVizinho(campo11);
         campo22.adicionarVizinho(campo12);
 
-        campo.abrir();
+        campo.adicionarVizinho(campo22);
+        campo22.abrir();
 
-        assertFalse(campo22.isAberto() && campo11.isAberto());
+        assertTrue(campo22.isAberto() && campo11.isFechado());
     }
 }
