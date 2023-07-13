@@ -83,18 +83,32 @@ public class CampoTeste {
     }
 
     @Test
-    public void testAbrirNaoMinadoMarcado(){
+    public void testAbrirMinadoMarcado(){
         campo.AlternarMarcacao();
+        campo.minar();
         assertFalse(campo.abrir());
     }
 
     @Test
-    public void testAbrirMinadoMarcado(){
+    public void testAbrirMinadoNaoMarcado(){
         campo.minar();
         assertThrows(ExplosaoException.class, () ->{
             campo.abrir();
         } );
     }
 
-    
+    @Test
+    public void testAbrirComVizinhos(){
+        Campo campo11 = new Campo(1,1);
+        Campo campo12 = new Campo(1,1);
+        campo12.minar();
+        Campo campo22 = new Campo(2,2);
+
+        campo22.adicionarVizinho(campo11);
+        campo22.adicionarVizinho(campo12);
+
+        campo.abrir();
+
+        assertFalse(campo22.isAberto() && campo11.isAberto());
+    }
 }
