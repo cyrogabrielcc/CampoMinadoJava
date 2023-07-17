@@ -7,16 +7,30 @@ import cminado.exceptions.ExplosaoException;
 
 public class Campo {
 	public final int linha;
+	
+
 	public final int coluna;
+
+
 	private boolean minado;
 
 	private boolean aberto=false;
-	private boolean fechado=false;
+	//private boolean fechado=false;
 	private boolean marcado=false;
 
 	// Criando a lista dos campos vizinhos
 	private List<Campo> vizinhos = new ArrayList<>();
 
+	// Retornando a linha
+	public int getLinha() {
+		return linha;
+	}
+
+	//retornando a coluna
+	public int getColuna() {
+		return coluna;
+	}
+	
 	public Campo(int linha, int coluna) {
 		this.coluna=coluna;
 		this.linha=linha;
@@ -82,6 +96,44 @@ public class Campo {
 	}
 
 	public boolean isFechado(){
-		return !aberto;
+		return !isAberto();
 	}
+
+	boolean objetivoAlcancado(){
+		boolean desvendado = !minado && aberto;
+		boolean protegido = minado && marcado;
+
+		return  desvendado || protegido;
+	}
+
+	long minasNaVizinhanca(){
+		return vizinhos.stream().filter(v->v.minado).count();
+	}
+
+	void reiniciar(){
+		aberto = false;
+		minado=false;
+		marcado=false;
+	}
+
+	public String toString(){
+		if (marcado) {
+			return "x";
+		} 
+		else if (aberto && minado){
+			return "*";
+		} 
+		else if (aberto && minasNaVizinhanca()>0){
+			return Long.toString(minasNaVizinhanca());
+		}
+		else if (aberto){
+			return " ";
+		}
+		else {
+			return "?";
+		}
+	}
+
+
+
 }
