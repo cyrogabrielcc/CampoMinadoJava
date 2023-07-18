@@ -88,6 +88,10 @@ public class Campo {
 		return marcado;
 	}
 
+	public boolean isMinado(){
+		return minado;
+	}
+
 	public void minar(){
 		minado=true;
 	}
