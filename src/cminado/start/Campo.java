@@ -57,7 +57,7 @@ public class Campo {
 			return false;
 		}
 	}
-	void AlternarMarcacao(){
+	void alternarMarcacao(){
 		if(!aberto){
 			marcado = !marcado;
 		}
@@ -116,8 +116,8 @@ public class Campo {
 
 	void reiniciar(){
 		aberto = false;
-		minado=false;
-		marcado=false;
+		minado = false;
+		marcado = false;
 	}
 
 	public String toString(){

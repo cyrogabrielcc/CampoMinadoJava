@@ -66,14 +66,14 @@ public class CampoTeste {
 
     @Test
     public void testAlternarMarcacao(){
-        campo.AlternarMarcacao();
+        campo.alternarMarcacao();
         assertTrue(campo.isMarcado());
     }
 
     @Test
     public void testAlternarMarcacaoDuasChamadas(){
-        campo.AlternarMarcacao();
-        campo.AlternarMarcacao();
+        campo.alternarMarcacao();
+        campo.alternarMarcacao();
         assertFalse(campo.isMarcado());
     }
 
@@ -84,7 +84,7 @@ public class CampoTeste {
 
     @Test
     public void testAbrirMinadoMarcado(){
-        campo.AlternarMarcacao();
+        campo.alternarMarcacao();
         campo.minar();
         assertFalse(campo.abrir());
     }
