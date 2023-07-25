@@ -2,6 +2,7 @@ package cminado.start;
 
 import java.util.Scanner;
 
+import cminado.exceptions.ExplosaoException;
 import cminado.exceptions.SairException;
 
 public class TabuleiroConsole {
@@ -21,8 +22,8 @@ public class TabuleiroConsole {
         try {
             boolean continuar = true;
             while (continuar) {
-                cicloDoJogo();
                 System.out.println("Outra partida? (S/n)");
+                cicloDoJogo();
                 String resposta = entrada.nextLine();
 
                 if ("n".equalsIgnoreCase(resposta)) {
@@ -48,7 +49,7 @@ public class TabuleiroConsole {
                 String digitado = capturarValorDigitado(" ");
             }
             System.out.println("GANHOOOOOOOOU!!!");
-        } catch (Exception e) {
+        } catch (ExplosaoException e) {
             System.out.println("PERDEU!");
         }
     }
