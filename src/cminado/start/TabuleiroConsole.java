@@ -1,5 +1,7 @@
 package cminado.start;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import cminado.exceptions.ExplosaoException;
@@ -46,8 +48,9 @@ public class TabuleiroConsole {
         try {
             while (!tabuleiro.objetivoAlcancado()) {
                 System.out.println(tabuleiro);
-                String digitado = capturarValorDigitado(" ");
-            }
+                String digitado = capturarValorDigitado("Digite: (X, Y)");
+                Iterator<Integer> x,y =Arrays.stream(digitado.split(",")).map(e->Integer.parseInt(e)).iterator();
+            }   
             System.out.println("GANHOOOOOOOOU!!!");
         } catch (ExplosaoException e) {
             System.out.println("PERDEU!");
