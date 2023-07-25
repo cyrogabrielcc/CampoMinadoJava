@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import cminado.exceptions.ExplosaoException;
+
 public class Tabuleiro {
     private int linhas;
     private int colunas;
@@ -23,10 +25,14 @@ public class Tabuleiro {
     }
 
     public void abrir(int linha, int coluna){
-        campos.parallelStream()
+      try{
+            campos.parallelStream()
             .filter(c -> c.getLinha() == linha && c.getColuna()==coluna)
             .findFirst()
-            .ifPresent(c->c.abrir());;
+            .ifPresent(c->c.abrir());
+            } catch(ExplosaoException e) {
+                
+            }
     }
 
      public void alterarMarcacao(int linha, int coluna){
@@ -89,5 +95,7 @@ public class Tabuleiro {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
     }
 }

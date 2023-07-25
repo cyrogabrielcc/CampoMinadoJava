@@ -7,17 +7,11 @@ import cminado.exceptions.ExplosaoException;
 
 public class Campo {
 	public final int linha;
-	
-
 	public final int coluna;
-
-
 	private boolean minado;
-
 	private boolean aberto=false;
 	//private boolean fechado=false;
 	private boolean marcado=false;
-
 	// Criando a lista dos campos vizinhos
 	private List<Campo> vizinhos = new ArrayList<>();
 
@@ -80,6 +74,7 @@ public class Campo {
 		}
 	}
 
+
 	boolean vizinhancaSegura(){
 		return vizinhos.stream().noneMatch(v->v.minado);
 	}
@@ -136,6 +131,9 @@ public class Campo {
 		else {
 			return "?";
 		}
+	}
+	void setAberto(boolean aberto) {
+		this.aberto = aberto;
 	}
 
 
