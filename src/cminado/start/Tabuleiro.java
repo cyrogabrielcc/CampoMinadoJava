@@ -31,7 +31,7 @@ public class Tabuleiro {
             .findFirst()
             .ifPresent(c->c.abrir());
             } catch(ExplosaoException e) {
-                
+
             }
     }
 
@@ -95,7 +95,5 @@ public class Tabuleiro {
             sb.append("\n");
         }
         return sb.toString();
-    }
-
     }
 }
