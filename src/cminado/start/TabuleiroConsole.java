@@ -48,8 +48,19 @@ public class TabuleiroConsole {
         try {
             while (!tabuleiro.objetivoAlcancado()) {
                 System.out.println(tabuleiro);
-                String digitado = capturarValorDigitado("Digite: (X, Y)");
-                Iterator<Integer> x,y =Arrays.stream(digitado.split(",")).map(e->Integer.parseInt(e)).iterator();
+                String digitado = capturarValorDigitado("Digite 1 para Abrir e 2 para desmarcar: ");
+                Iterator<Integer> xy = Arrays
+                        .stream(digitado.split(","))
+                        .map(e->Integer.parseInt(e.trim()))
+                        .iterator();
+                
+            if ("1".equals(digitado)){
+                tabuleiro.abrir(xy.next(), xy.next());
+            } else if ("1".equals(digitado)){
+                tabuleiro.alterarMarcacao(xy.next(), xy.next());
+            }
+
+                System.out.println("");
             }   
             System.out.println("GANHOOOOOOOOU!!!");
         } catch (ExplosaoException e) {
