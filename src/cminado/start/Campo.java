@@ -132,7 +132,7 @@ public class Campo {
 			return "?";
 		}
 	}
-	void setAberto(boolean aberto) {
+	public void setAberto(boolean aberto) {
 		this.aberto = aberto;
 	}
 
